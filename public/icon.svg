@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="ElderShield Logo">
+  <rect width="512" height="512" rx="112" fill="#0F766E" />
+  <path
+    d="M256 76L116 134v112c0 101.4 59.7 194.2 140 226 80.3-31.8 140-124.6 140-226V134L256 76z"
+    fill="#FFFFFF"
+  />
+  <path
+    d="M256 106l-112 46.4v93.6c0 85.2 48.8 163.8 112 193.2 63.2-29.4 112-108 112-193.2v-93.6L256 106z"
+    fill="#F0FDFA"
+  />
+  <path
+    d="M204 258l36 36 74-78"
+    fill="none"
+    stroke="#0F766E"
+    stroke-width="32"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>

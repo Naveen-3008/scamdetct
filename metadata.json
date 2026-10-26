@@ -1,0 +1,6 @@
+{
+  "name": "ElderShield",
+  "description": "Accessible, multilingual local scam and phishing message checker designed to help older adults pause, check suspicious messages, and stay safe.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
