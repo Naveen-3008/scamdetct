@@ -158,10 +158,10 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-7 sm:space-y-8">
       {/* Page Header */}
       <div>
-        <h1 className="text-3xl sm:text-4xl font-bold text-slate-900">
+        <h1 className="text-2xl sm:text-4xl font-bold text-slate-900">
           {t.scanner.title}
         </h1>
         <p className="mt-2 text-lg sm:text-xl text-slate-700 leading-relaxed max-w-3xl">
@@ -173,17 +173,17 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
       <form
         onSubmit={handleFormSubmit}
         noValidate
-        className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 space-y-6"
+        className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-8 space-y-6"
       >
         <div>
-          <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2.5">
+          <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-2 mb-2.5">
             <label
               htmlFor="scanner-message-textarea"
-              className="text-xl font-bold text-slate-900"
+              className="text-lg sm:text-xl font-bold text-slate-900"
             >
               {t.scanner.inputLabel}
             </label>
-            <span className="text-base text-slate-600 tabular-nums font-mono">
+            <span className="text-sm sm:text-base text-slate-600 tabular-nums font-mono">
               {messageText.length} / {MAX_MESSAGE_LENGTH} {t.scanner.charCountLabel}
             </span>
           </div>
@@ -206,7 +206,7 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
             <div
               id="scanner-input-error"
               role="alert"
-              className="mt-3 rounded-xl border border-red-300 bg-red-50 p-4 flex items-start gap-3 text-red-900 text-lg font-medium"
+              className="mt-3 rounded-xl border border-red-300 bg-red-50 p-4 flex items-start gap-3 text-red-900 text-base sm:text-lg font-medium"
             >
               <AlertCircle className="w-6 h-6 shrink-0 mt-0.5 text-red-700" aria-hidden="true" />
               <span>{errorMessage}</span>
@@ -214,33 +214,33 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
           )}
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-wrap items-center gap-3.5">
+        {/* Action Buttons: Full-width aligned stack on mobile, inline flex on tablet/desktop */}
+        <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-3.5">
           <button
             type="submit"
-            className="inline-flex items-center justify-center gap-2.5 min-h-[52px] px-7 py-3 rounded-xl bg-teal-700 text-white font-semibold text-lg hover:bg-teal-800 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[52px] px-6 sm:px-7 py-3 rounded-xl bg-teal-700 text-white font-semibold text-lg text-center hover:bg-teal-800 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors"
           >
             <ShieldCheck className="w-6 h-6 shrink-0" aria-hidden="true" />
-            <span>{t.scanner.checkBtn}</span>
+            <span className="leading-snug">{t.scanner.checkBtn}</span>
           </button>
 
           <button
             type="button"
             onClick={handleLoadExample}
-            className="inline-flex items-center justify-center gap-2 min-h-[52px] px-5 py-3 rounded-xl border border-slate-300 bg-white text-slate-800 font-semibold text-lg hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[52px] px-5 py-3 rounded-xl border border-slate-300 bg-white text-slate-800 font-semibold text-lg text-center hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors"
           >
             <FileText className="w-5 h-5 shrink-0 text-teal-800" aria-hidden="true" />
-            <span>{t.scanner.exampleBtn}</span>
+            <span className="leading-snug">{t.scanner.exampleBtn}</span>
           </button>
 
           <button
             type="button"
             onClick={handleClear}
             disabled={messageText.length === 0 && !result}
-            className="inline-flex items-center justify-center gap-2 min-h-[52px] px-5 py-3 rounded-xl border border-slate-300 bg-white text-slate-700 font-semibold text-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[52px] px-5 py-3 rounded-xl border border-slate-300 bg-white text-slate-700 font-semibold text-lg text-center hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors"
           >
             <Eraser className="w-5 h-5 shrink-0" aria-hidden="true" />
-            <span>{t.scanner.clearBtn}</span>
+            <span className="leading-snug">{t.scanner.clearBtn}</span>
           </button>
         </div>
 
@@ -250,7 +250,7 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
             {t.scanner.historyConsentGroupLabel}
           </legend>
 
-          <label className="flex items-start gap-3.5 cursor-pointer min-h-[44px] py-1">
+          <label className="flex items-start gap-3 cursor-pointer min-h-[44px] py-1">
             <input
               type="checkbox"
               checked={preferences.autoSpeakResult}
@@ -259,12 +259,12 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
               }
               className="mt-1 h-5 w-5 rounded border-slate-400 text-teal-700 focus:ring-teal-700 shrink-0"
             />
-            <span className="text-lg text-slate-800 font-medium">
+            <span className="text-base sm:text-lg text-slate-800 font-medium leading-snug">
               {t.voice.autoSpeakLabel}
             </span>
           </label>
 
-          <label className="flex items-start gap-3.5 cursor-pointer min-h-[44px] py-1">
+          <label className="flex items-start gap-3 cursor-pointer min-h-[44px] py-1">
             <input
               type="checkbox"
               checked={preferences.enableHistory}
@@ -273,14 +273,14 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
               }
               className="mt-1 h-5 w-5 rounded border-slate-400 text-teal-700 focus:ring-teal-700 shrink-0"
             />
-            <span className="text-lg text-slate-800">
+            <span className="text-base sm:text-lg text-slate-800 leading-snug">
               {t.scanner.enableHistoryLabel}
             </span>
           </label>
 
           {preferences.enableHistory && (
-            <div className="pl-8 space-y-1">
-              <label className="flex items-start gap-3.5 cursor-pointer min-h-[44px] py-1">
+            <div className="pl-4 sm:pl-8 space-y-1">
+              <label className="flex items-start gap-3 cursor-pointer min-h-[44px] py-1">
                 <input
                   type="checkbox"
                   checked={preferences.saveMessageInHistory}
@@ -291,11 +291,11 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
                   }
                   className="mt-1 h-5 w-5 rounded border-slate-400 text-teal-700 focus:ring-teal-700 shrink-0"
                 />
-                <span className="text-lg text-slate-800 font-medium">
+                <span className="text-base sm:text-lg text-slate-800 font-medium leading-snug">
                   {t.scanner.saveMessageTextLabel}
                 </span>
               </label>
-              <p className="text-base text-slate-600 pl-8">
+              <p className="text-sm sm:text-base text-slate-600 pl-8 leading-snug">
                 {t.scanner.saveMessageTextHint}
               </p>
             </div>
@@ -348,7 +348,7 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
           />
 
           {/* Detected Warning Signs */}
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-8">
             <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
               {t.scanner.warningSignsHeading}
             </h3>
@@ -374,28 +374,30 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
                           aria-hidden="true"
                         />
                         <div className="min-w-0 flex-1">
-                          <p className="text-sm sm:text-base font-medium text-slate-600">
+                          <p className="text-sm sm:text-base font-medium text-slate-600 leading-snug">
                             {categoryLabel}
                           </p>
-                          <h4 className="text-xl font-bold text-slate-900 mt-0.5">
+                          <h4 className="text-lg sm:text-xl font-bold text-slate-900 mt-0.5 leading-snug">
                             {ruleInfo.title}
                           </h4>
-                          <p className="mt-1.5 text-lg text-slate-700 leading-relaxed">
-                            {ruleInfo.detail}
-                          </p>
-                          {sign.matchedPhrases.length > 0 && (
-                            <p className="mt-2.5 text-base text-slate-700 break-words">
-                              <span className="font-semibold text-slate-900">
-                                {t.scanner.triggeredPhrasesLabel}:{' '}
-                              </span>
-                              <span className="font-mono text-sm sm:text-base text-slate-800">
-                                {sign.matchedPhrases
-                                  .map((p) => `“${p}”`)
-                                  .join(' · ')}
-                              </span>
-                            </p>
-                          )}
                         </div>
+                      </div>
+                      <div className="sm:pl-9 space-y-2">
+                        <p className="text-lg text-slate-700 leading-relaxed">
+                          {ruleInfo.detail}
+                        </p>
+                        {sign.matchedPhrases.length > 0 && (
+                          <p className="text-base text-slate-700 break-words">
+                            <span className="font-semibold text-slate-900">
+                              {t.scanner.triggeredPhrasesLabel}:{' '}
+                            </span>
+                            <span className="font-mono text-sm sm:text-base text-slate-800 break-all sm:break-words">
+                              {sign.matchedPhrases
+                                .map((p) => `“${p}”`)
+                                .join(' · ')}
+                            </span>
+                          </p>
+                        )}
                       </div>
                     </li>
                   );
@@ -405,7 +407,7 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
           </div>
 
           {/* Recommended Next Steps */}
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-8">
             <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
               {t.scanner.nextStepsHeading}
             </h3>
@@ -413,13 +415,13 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
               {getNextSteps(result).map((step, idx) => (
                 <li
                   key={idx}
-                  className="flex items-start gap-3.5 text-lg sm:text-xl text-slate-800 leading-relaxed"
+                  className="flex items-start gap-3 text-lg sm:text-xl text-slate-800 leading-relaxed"
                 >
                   <CheckCircle2
                     className="w-6 h-6 text-teal-700 shrink-0 mt-1"
                     aria-hidden="true"
                   />
-                  <span>{step}</span>
+                  <span className="min-w-0">{step}</span>
                 </li>
               ))}
             </ol>
@@ -430,9 +432,9 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
           </div>
 
           {/* Heuristic Disclaimer */}
-          <div className="rounded-2xl border border-slate-200 bg-slate-100/80 p-5 flex items-start gap-3 text-base sm:text-lg text-slate-700">
+          <div className="rounded-2xl border border-slate-200 bg-slate-100/80 p-4 sm:p-5 flex items-start gap-3 text-base sm:text-lg text-slate-700">
             <Info className="w-6 h-6 text-slate-600 shrink-0 mt-0.5" aria-hidden="true" />
-            <p>{t.scanner.heuristicDisclaimer}</p>
+            <p className="min-w-0">{t.scanner.heuristicDisclaimer}</p>
           </div>
         </section>
       )}

@@ -30,10 +30,10 @@ export const LanguageVoiceView: React.FC<LanguageVoiceViewProps> = ({
   speech,
 }) => {
   return (
-    <div className="space-y-8">
+    <div className="space-y-7 sm:space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl sm:text-4xl font-bold text-slate-900">
+        <h1 className="text-2xl sm:text-4xl font-bold text-slate-900">
           {t.languagePage.title}
         </h1>
         <p className="mt-2 text-lg sm:text-xl text-slate-700 max-w-3xl leading-relaxed">
@@ -42,13 +42,13 @@ export const LanguageVoiceView: React.FC<LanguageVoiceViewProps> = ({
       </div>
 
       {/* Seven-Language Selection Grid */}
-      <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 space-y-5">
-        <h2 className="text-2xl font-bold text-slate-900">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-8 space-y-5">
+        <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
           {t.languagePage.selectLanguageHeading}
         </h2>
 
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4 items-stretch"
           role="radiogroup"
           aria-label={t.languagePage.selectLanguageHeading}
         >
@@ -61,24 +61,24 @@ export const LanguageVoiceView: React.FC<LanguageVoiceViewProps> = ({
                 role="radio"
                 aria-checked={isSelected}
                 onClick={() => onSelectLanguage(lang.code)}
-                className={`min-h-[76px] p-5 rounded-2xl border text-left flex items-center justify-between gap-3 transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 ${
+                className={`min-h-[76px] p-4 sm:p-5 rounded-2xl border text-left flex flex-wrap items-center justify-between gap-2.5 transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 ${
                   isSelected
                     ? 'border-teal-700 bg-teal-50/80 text-slate-900'
                     : 'border-slate-300 bg-white text-slate-800 hover:bg-slate-50'
                 }`}
               >
                 <div className="min-w-0">
-                  <p className="text-2xl font-bold text-slate-900 leading-snug">
+                  <p className="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">
                     {lang.nativeName}
                   </p>
-                  <p className="text-base text-slate-600 mt-0.5">
+                  <p className="text-sm sm:text-base text-slate-600 mt-0.5">
                     {lang.englishName}
                   </p>
                 </div>
 
                 {isSelected && (
-                  <span className="inline-flex items-center gap-1.5 text-teal-800 font-semibold text-base shrink-0">
-                    <Check className="w-6 h-6" aria-hidden="true" />
+                  <span className="inline-flex items-center gap-1.5 text-teal-800 font-semibold text-sm sm:text-base shrink-0">
+                    <Check className="w-5 h-5 shrink-0" aria-hidden="true" />
                     <span>{t.languagePage.activeBadgeText}</span>
                   </span>
                 )}
@@ -91,7 +91,7 @@ export const LanguageVoiceView: React.FC<LanguageVoiceViewProps> = ({
       {/* Spoken Voice Settings & Test */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
             {t.languagePage.voiceSettingsHeading}
           </h2>
           <p className="mt-1 text-lg text-slate-700 max-w-3xl">

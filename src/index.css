@@ -7,10 +7,13 @@
 }
 
 @layer base {
-  html {
+  html,
+  body {
     font-family: var(--font-sans);
     color: #0f172a;
     background-color: #f8fafc;
+    overflow-x: clip;
+    max-width: 100%;
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
@@ -32,11 +35,13 @@
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     text-wrap: balance;
-    line-height: 1.35;
+    overflow-wrap: break-word;
+    line-height: 1.32;
   }
 
   p, li, label, textarea, input, button, select {
-    line-height: 1.65;
+    line-height: 1.6;
+    overflow-wrap: break-word;
   }
 
   /* Ensure tall Indic script ascenders and descenders never clip */

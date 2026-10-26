@@ -6,11 +6,16 @@ interface BrandLogoProps {
 }
 
 export const BrandLogo: React.FC<BrandLogoProps> = ({ name, size = 'md' }) => {
-  const boxClass = size === 'sm' ? 'h-9 w-9 rounded-lg' : 'h-10 w-10 rounded-xl';
-  const svgSize = size === 'sm' ? 22 : 24;
+  const boxClass =
+    size === 'sm'
+      ? 'h-8 w-8 sm:h-9 sm:w-9 rounded-lg'
+      : 'h-10 w-10 rounded-xl';
+  const svgSize = size === 'sm' ? 20 : 24;
+  const textClass =
+    size === 'sm' ? 'text-lg sm:text-xl' : 'text-xl';
 
   return (
-    <span className="inline-flex items-center gap-3 whitespace-nowrap shrink-0">
+    <span className="inline-flex items-center gap-2 sm:gap-3 whitespace-nowrap shrink-0">
       <span
         className={`${boxClass} bg-teal-700 text-white inline-flex items-center justify-center shrink-0`}
         aria-hidden="true"
@@ -29,7 +34,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({ name, size = 'md' }) => {
           <path d="m9 12 2 2 4-4" />
         </svg>
       </span>
-      <span className="text-xl font-bold tracking-tight text-slate-900">
+      <span className={`${textClass} font-bold tracking-tight text-slate-900`}>
         {name}
       </span>
     </span>

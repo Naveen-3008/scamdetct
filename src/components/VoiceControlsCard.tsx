@@ -57,13 +57,13 @@ export const VoiceControlsCard: React.FC<VoiceControlsCardProps> = ({
   ];
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-6">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+    <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-3">
         <h4 className="text-xl font-bold text-slate-900">
           {t.voice.sectionTitle}
         </h4>
         <div
-          className="text-base text-slate-600 flex items-center gap-2 flex-wrap"
+          className="text-sm sm:text-base text-slate-600 flex items-baseline gap-1.5 flex-wrap min-w-0"
           aria-live="polite"
         >
           <span className="font-medium text-slate-700">
@@ -75,7 +75,7 @@ export const VoiceControlsCard: React.FC<VoiceControlsCardProps> = ({
             </span>
           )}
           {supportState === 'ready' && (
-            <span className="text-teal-800 font-medium">
+            <span className="text-teal-800 font-medium min-w-0">
               {t.voice.statusReady}
               {matchedVoiceName ? ` · ${matchedVoiceName}` : ''}
             </span>
@@ -91,17 +91,29 @@ export const VoiceControlsCard: React.FC<VoiceControlsCardProps> = ({
         </div>
       </div>
 
-      {/* Action Buttons */}
-      <div className="mt-5 flex flex-wrap items-center gap-3">
+      {/* Action Buttons: Symmetrical full-width / 2-col layout on mobile, inline flex on tablet/desktop */}
+      <div className="mt-5 grid grid-cols-1 min-[380px]:grid-cols-2 sm:flex sm:flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3">
         {onSpeakPrimary && (
           <button
             type="button"
             onClick={onSpeakPrimary}
             disabled={!voiceReady}
-            className="inline-flex items-center justify-center gap-2.5 min-h-[48px] px-5 py-2.5 rounded-xl bg-teal-700 text-white font-semibold text-lg hover:bg-teal-800 disabled:bg-slate-200 disabled:text-slate-500 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors"
+            className="min-[380px]:col-span-2 inline-flex items-center justify-center gap-2.5 min-h-[48px] px-5 py-2.5 rounded-xl bg-teal-700 text-white font-semibold text-lg text-center hover:bg-teal-800 disabled:bg-slate-200 disabled:text-slate-500 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors"
           >
             <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" />
-            <span>{t.voice.speakWarningBtn}</span>
+            <span className="leading-snug">{t.voice.speakWarningBtn}</span>
+          </button>
+        )}
+
+        {!onSpeakPrimary && (
+          <button
+            type="button"
+            onClick={onTestVoice}
+            disabled={!voiceReady}
+            className="min-[380px]:col-span-2 inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-2.5 rounded-xl border border-teal-700 bg-teal-50/70 text-teal-900 font-semibold text-base text-center hover:bg-teal-100 disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors"
+          >
+            <Play className="w-4 h-4 shrink-0" aria-hidden="true" />
+            <span className="leading-snug">{t.voice.testVoiceBtn}</span>
           </button>
         )}
 
@@ -109,31 +121,33 @@ export const VoiceControlsCard: React.FC<VoiceControlsCardProps> = ({
           type="button"
           onClick={onReplay}
           disabled={!voiceReady || (!canReplay && !onSpeakPrimary)}
-          className="inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-800 font-semibold text-base hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors"
+          className="inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-800 font-semibold text-base text-center hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors"
         >
           <RotateCcw className="w-5 h-5 shrink-0" aria-hidden="true" />
-          <span>{t.voice.replayBtn}</span>
+          <span className="leading-snug">{t.voice.replayBtn}</span>
         </button>
 
         <button
           type="button"
           onClick={onStop}
           disabled={!isSpeaking}
-          className="inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-800 font-semibold text-base hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors"
+          className="inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-800 font-semibold text-base text-center hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors"
         >
           <Square className="w-4 h-4 shrink-0" aria-hidden="true" />
-          <span>{t.voice.stopBtn}</span>
+          <span className="leading-snug">{t.voice.stopBtn}</span>
         </button>
 
-        <button
-          type="button"
-          onClick={onTestVoice}
-          disabled={!voiceReady}
-          className="inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-2.5 rounded-xl border border-teal-700 bg-teal-50/70 text-teal-900 font-semibold text-base hover:bg-teal-100 disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors"
-        >
-          <Play className="w-4 h-4 shrink-0" aria-hidden="true" />
-          <span>{t.voice.testVoiceBtn}</span>
-        </button>
+        {onSpeakPrimary && (
+          <button
+            type="button"
+            onClick={onTestVoice}
+            disabled={!voiceReady}
+            className="min-[380px]:col-span-2 inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-2.5 rounded-xl border border-teal-700 bg-teal-50/70 text-teal-900 font-semibold text-base text-center hover:bg-teal-100 disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors"
+          >
+            <Play className="w-4 h-4 shrink-0" aria-hidden="true" />
+            <span className="leading-snug">{t.voice.testVoiceBtn}</span>
+          </button>
+        )}
       </div>
 
       {/* Guidance when selected language voice pack is missing */}
@@ -147,7 +161,7 @@ export const VoiceControlsCard: React.FC<VoiceControlsCardProps> = ({
               className="w-6 h-6 text-amber-800 shrink-0 mt-0.5"
               aria-hidden="true"
             />
-            <div className="space-y-2 text-base sm:text-lg">
+            <div className="space-y-2 text-base sm:text-lg min-w-0">
               <p className="font-bold text-amber-950">
                 {t.voice.statusMissingVoiceTitle}
               </p>
@@ -169,14 +183,14 @@ export const VoiceControlsCard: React.FC<VoiceControlsCardProps> = ({
 
       {/* Auto-Speak Preference Toggle */}
       <div className="mt-5 pt-4 border-t border-slate-200">
-        <label className="flex items-start gap-3.5 cursor-pointer min-h-[44px] py-1">
+        <label className="flex items-start gap-3 cursor-pointer min-h-[44px] py-1">
           <input
             type="checkbox"
             checked={autoSpeak}
             onChange={(e) => onAutoSpeakChange(e.target.checked)}
             className="mt-1 h-5 w-5 rounded border-slate-400 text-teal-700 focus:ring-teal-700 shrink-0"
           />
-          <span className="text-lg text-slate-800 font-medium">
+          <span className="text-base sm:text-lg text-slate-800 font-medium leading-snug">
             {t.voice.autoSpeakLabel}
           </span>
         </label>
@@ -190,7 +204,7 @@ export const VoiceControlsCard: React.FC<VoiceControlsCardProps> = ({
               {t.voice.rateLabel}
             </span>
             <div
-              className="inline-flex flex-wrap gap-2"
+              className="grid grid-cols-1 min-[440px]:grid-cols-3 sm:inline-flex sm:flex-wrap gap-2 w-full sm:w-auto"
               role="group"
               aria-label={t.voice.rateLabel}
             >
@@ -202,7 +216,7 @@ export const VoiceControlsCard: React.FC<VoiceControlsCardProps> = ({
                     type="button"
                     onClick={() => onRateChange(opt.value)}
                     aria-pressed={active}
-                    className={`min-h-[48px] px-4 py-2 rounded-xl font-semibold text-base border transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-1 ${
+                    className={`min-h-[48px] px-4 py-2 rounded-xl font-semibold text-base text-center border transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-1 ${
                       active
                         ? 'bg-slate-900 text-white border-slate-900'
                         : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
@@ -218,10 +232,10 @@ export const VoiceControlsCard: React.FC<VoiceControlsCardProps> = ({
           <div>
             <label
               htmlFor="eldershield-voice-volume"
-              className="flex items-center justify-between text-base font-semibold text-slate-800 mb-2"
+              className="flex items-center justify-between gap-2 text-base font-semibold text-slate-800 mb-2"
             >
               <span>{t.voice.volumeLabel}</span>
-              <span className="tabular-nums font-mono text-slate-700">
+              <span className="tabular-nums font-mono text-slate-700 shrink-0">
                 {Math.round(volume * 100)}%
               </span>
             </label>

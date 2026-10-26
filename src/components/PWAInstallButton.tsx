@@ -19,17 +19,20 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
     return null;
   }
 
-  const widthClass = variant === 'full' ? 'w-full justify-center' : '';
+  const widthClass =
+    variant === 'full'
+      ? 'w-full justify-center'
+      : 'w-full sm:w-auto justify-center';
 
   if (isInstallable) {
     return (
       <button
         type="button"
         onClick={install}
-        className={`inline-flex items-center gap-2 min-h-[48px] px-4 py-2.5 rounded-xl border border-teal-700 bg-teal-50 text-teal-900 font-semibold text-base hover:bg-teal-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors whitespace-nowrap shrink-0 ${widthClass}`}
+        className={`inline-flex items-center gap-2 min-h-[48px] px-4 py-2.5 rounded-xl border border-teal-700 bg-teal-50 text-teal-900 font-semibold text-base text-center hover:bg-teal-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors ${widthClass}`}
       >
         <Download className="w-5 h-5 shrink-0" aria-hidden="true" />
-        <span>{t.pwa.installApp}</span>
+        <span className="leading-snug">{t.pwa.installApp}</span>
       </button>
     );
   }
@@ -40,10 +43,10 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
         <button
           type="button"
           onClick={() => setShowIOSGuide(true)}
-          className={`inline-flex items-center gap-2 min-h-[48px] px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-800 font-semibold text-base hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors whitespace-nowrap shrink-0 ${widthClass}`}
+          className={`inline-flex items-center gap-2 min-h-[48px] px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-800 font-semibold text-base text-center hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors ${widthClass}`}
         >
           <Smartphone className="w-5 h-5 shrink-0" aria-hidden="true" />
-          <span>{t.pwa.installIOS}</span>
+          <span className="leading-snug">{t.pwa.installIOS}</span>
         </button>
 
         {showIOSGuide && (

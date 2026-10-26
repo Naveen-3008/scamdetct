@@ -130,14 +130,14 @@ export const NavigationShell: React.FC<NavigationShellProps> = ({
 
       {/* Main Workspace Area */}
       <div className="flex-1 flex flex-col min-w-0">
-        {/* Top Bar (Compact 56px on Mobile to respect 15% sticky cap, clean 3-zone header on Desktop) */}
-        <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-xs border-b border-slate-200 px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-4">
+        {/* Top Bar (Compact 60px on Mobile to respect 15% sticky cap, clean 3-zone header on Desktop) */}
+        <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-xs border-b border-slate-200 px-4 sm:px-6 lg:px-8 h-15 sm:h-16 flex items-center justify-between gap-2 sm:gap-4">
           {/* Left Zone: Brand on mobile, Section Breadcrumb on desktop */}
-          <div className="flex items-center min-w-0">
+          <div className="flex items-center min-w-0 shrink-0">
             <button
               type="button"
               onClick={() => handleNavClick('home')}
-              className="lg:hidden rounded-lg focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700"
+              className="lg:hidden inline-flex items-center min-h-[44px] rounded-lg focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700"
             >
               <BrandLogo name={t.brand.name} size="sm" />
             </button>
@@ -151,8 +151,8 @@ export const NavigationShell: React.FC<NavigationShellProps> = ({
           </div>
 
           {/* Right Zone: Accessible Language Selector + Primary CTA / Mobile Menu */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <div className="flex items-center">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="flex items-center min-w-0">
               <label htmlFor="header-language-select" className="sr-only">
                 {t.nav.changeLanguage}
               </label>
@@ -163,7 +163,7 @@ export const NavigationShell: React.FC<NavigationShellProps> = ({
                   onSelectLanguage(e.target.value as LanguageCode)
                 }
                 aria-label={t.nav.changeLanguage}
-                className="min-h-[44px] sm:min-h-[48px] px-3 sm:px-4 py-1.5 rounded-xl border border-slate-300 bg-white text-slate-900 font-semibold text-base hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 cursor-pointer"
+                className="h-11 sm:h-12 w-full max-w-[126px] min-[390px]:max-w-[152px] sm:max-w-[215px] px-2.5 sm:px-3.5 rounded-xl border border-slate-300 bg-white text-slate-900 font-semibold text-sm sm:text-base truncate hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 cursor-pointer"
               >
                 {SUPPORTED_LANGUAGES.map((lang) => (
                   <option key={lang.code} value={lang.code}>
@@ -178,7 +178,7 @@ export const NavigationShell: React.FC<NavigationShellProps> = ({
               <button
                 type="button"
                 onClick={() => handleNavClick('scanner')}
-                className="hidden md:inline-flex items-center justify-center min-h-[48px] px-5 py-2 rounded-xl bg-teal-700 text-white font-semibold text-base hover:bg-teal-800 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors whitespace-nowrap shrink-0"
+                className="hidden md:inline-flex items-center justify-center h-12 px-5 rounded-xl bg-teal-700 text-white font-semibold text-base hover:bg-teal-800 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition-colors whitespace-nowrap shrink-0"
               >
                 {t.nav.scanner}
               </button>
@@ -190,7 +190,7 @@ export const NavigationShell: React.FC<NavigationShellProps> = ({
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation-drawer"
               aria-label={t.nav.openMenu}
-              className="lg:hidden min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white text-slate-900 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700"
+              className="lg:hidden h-11 w-11 shrink-0 inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white text-slate-900 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700"
             >
               <Menu className="w-6 h-6" aria-hidden="true" />
             </button>
@@ -202,9 +202,9 @@ export const NavigationShell: React.FC<NavigationShellProps> = ({
           <div
             role="status"
             aria-live="polite"
-            className="bg-amber-50 border-b border-amber-300 px-4 sm:px-8 py-3 text-amber-950 flex items-center gap-3 text-base sm:text-lg font-medium"
+            className="bg-amber-50 border-b border-amber-300 px-4 sm:px-8 py-3 text-amber-950 flex items-start sm:items-center gap-3 text-base sm:text-lg font-medium"
           >
-            <WifiOff className="w-5 h-5 shrink-0 text-amber-800" aria-hidden="true" />
+            <WifiOff className="w-5 h-5 shrink-0 mt-1 sm:mt-0 text-amber-800" aria-hidden="true" />
             <span>{t.pwa.offlineBanner}</span>
           </div>
         )}
@@ -223,20 +223,20 @@ export const NavigationShell: React.FC<NavigationShellProps> = ({
               onClick={() => setMobileMenuOpen(false)}
               aria-hidden="true"
             />
-            <div className="relative ml-auto w-full max-w-xs bg-white h-full shadow-xl flex flex-col border-l border-slate-200">
-              <div className="px-5 py-4 border-b border-slate-200 flex items-center justify-between gap-3">
+            <div className="relative ml-auto w-[85vw] max-w-xs sm:max-w-sm bg-white h-full shadow-xl flex flex-col border-l border-slate-200">
+              <div className="px-4 h-15 sm:h-16 border-b border-slate-200 flex items-center justify-between gap-3 shrink-0">
                 <BrandLogo name={t.brand.name} size="sm" />
                 <button
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
                   aria-label={t.nav.closeMenu}
-                  className="min-h-[48px] min-w-[48px] inline-flex items-center justify-center rounded-xl text-slate-700 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700"
+                  className="h-11 w-11 shrink-0 inline-flex items-center justify-center rounded-xl text-slate-700 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-teal-700"
                 >
                   <X className="w-6 h-6" aria-hidden="true" />
                 </button>
               </div>
 
-              <nav className="flex-1 overflow-y-auto p-4 space-y-1.5">
+              <nav className="flex-1 overflow-y-auto p-3.5 sm:p-4 space-y-1.5">
                 {navItems.map(({ id, label, Icon }) => {
                   const isActive = activeSection === id;
                   return (
@@ -252,7 +252,7 @@ export const NavigationShell: React.FC<NavigationShellProps> = ({
                       }`}
                     >
                       <Icon className="w-5 h-5 shrink-0" aria-hidden="true" />
-                      <span className="leading-snug">{label}</span>
+                      <span className="leading-snug min-w-0">{label}</span>
                     </button>
                   );
                 })}
@@ -269,22 +269,22 @@ export const NavigationShell: React.FC<NavigationShellProps> = ({
         <main
           id="main-content"
           tabIndex={-1}
-          className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-10 focus:outline-none"
+          className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 focus:outline-none"
         >
           {children}
         </main>
 
         {/* Quiet Reassuring Footer */}
-        <footer className="border-t border-slate-200 bg-white px-4 sm:px-6 lg:px-8 py-6 mt-auto">
-          <div className="max-w-5xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-base text-slate-600">
+        <footer className="border-t border-slate-200 bg-white px-4 sm:px-6 lg:px-8 py-5 sm:py-6 mt-auto">
+          <div className="max-w-5xl mx-auto flex flex-col items-start sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 text-base text-slate-600">
             <p className="font-medium text-slate-800">
               {t.brand.name} · {t.brand.tagline}
             </p>
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
               <button
                 type="button"
                 onClick={() => handleNavClick('safety-guide')}
-                className="text-teal-800 hover:underline font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 rounded"
+                className="min-h-[44px] inline-flex items-center text-left text-teal-800 hover:underline font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 rounded"
               >
                 {t.nav.safetyGuide}
               </button>
@@ -292,7 +292,7 @@ export const NavigationShell: React.FC<NavigationShellProps> = ({
               <button
                 type="button"
                 onClick={() => handleNavClick('about')}
-                className="text-teal-800 hover:underline font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 rounded"
+                className="min-h-[44px] inline-flex items-center text-left text-teal-800 hover:underline font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 rounded"
               >
                 {t.nav.about}
               </button>
